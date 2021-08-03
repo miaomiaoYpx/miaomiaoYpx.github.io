@@ -11,7 +11,7 @@
 
  声明一下，本文的主要流程基本都可以在上面这篇文章中找到，且写的很详细，我这里只是对上述文章中一些情况做补充，所以可以主要参考上面文章，写的真的很详细了
 
- 先总结一下主要流程：
+ ### 先总结一下主要流程：
 1、安装cygwin
 2、下载crosstool-ng的源码，然后在cygwin中编译该源码，得到crosstool-ng程序
 3、使用crosstool-ng程序，根据需要，编译生成对应的交叉编译器
@@ -167,14 +167,14 @@ ct-ng list-samples
  
  ### 编译过程出错的处理
   参考的文章中列出了很多出错和解决办法，这里只列出我遇到的他文章里没有的出错
- ### 1. version mismatch.  This is Automake 1.15.1 
+ #### 1. version mismatch.  This is Automake 1.15.1 
   Automake 版本不对， 使用 autoreconf -ivf 命令强制更新makefile中的配置
- ###2.'string' in namespace 'std' does not name a type 
+ #### 2.'string' in namespace 'std' does not name a type 
   在对应文件中增加#include <string>的引用，是的你没有看错，我们直接改工具源码，不要怕
- ###3. no usable python found at /usr/bin/python
+ #### 3. no usable python found at /usr/bin/python
   打开之前cygwin的安装程序，从中搜索python，在python目录下勾上python对应版本的devel文件，然后安装一下，安装好后从usr/include中找到名为pythonx.x的文件夹，然后放到/usr/bin下面去，如果没有文件夹就创造文件夹
   
-  ###编译成功后：
+  ### 编译成功后：
   最终编译完成，会在x-tools文件夹下找到对应的交叉编译器目录，然后要将编译器添加到环境变量中才能使用，把.bashrc的环境变量改为
 \#PATH=$PATH:/opt/bin
 PATH=$PATH:$HOME/.../x-tools/<templename>/bin:/opt/bin
@@ -199,17 +199,17 @@ CC=arm-xscale-linux-gnueabi-gcc：指定所用的交叉编译器gcc
   参数的值根据你的具体情况去填
   配置完成后，调用最后的make命令，会调用你的交叉编译器，来编译生成对应平台的可执行文件，然后把该文件拷贝过去试一试吧
   
-  补充：一开始只有.c或.cpp的源码，怎么从无到有生成configure和makefile文件
-  1.使用autoscan命令，生成configure.scan
-  2.将configure.scan该名为configure.ac并修改其内容，可参考https://www.cnblogs.com/fallenmoon/p/7506035.html
-  3.执行aclocal和autoconf命令，生成aclocal.m4和configure文件
-  4.新建Makefile.am文件，填入以下内容：
-AUTOMAKE_OPTIONS=foreign 
-bin_PROGRAMS=helloworld 
-helloworld_SOURCES=helloworld.c 
-  5.执行automake --add-missing生成makefile.in文件
-  6.执行configure ... 配置并生成makefile文件，参数填写见上文
-  7.执行make
+  ### 补充：一开始只有.c或.cpp的源码，怎么从无到有生成configure和makefile文件
+  1.使用autoscan命令，生成configure.scan<br>
+  2.将configure.scan该名为configure.ac并修改其内容，可参考https://www.cnblogs.com/fallenmoon/p/7506035.html<br>
+  3.执行aclocal和autoconf命令，生成aclocal.m4和configure文件<br>
+  4.新建Makefile.am文件，填入以下内容：<br>
+AUTOMAKE_OPTIONS=foreign <br>
+bin_PROGRAMS=helloworld <br>
+helloworld_SOURCES=helloworld.c <br>
+  5.执行automake --add-missing生成makefile.in文件<br>
+  6.执行configure ... 配置并生成makefile文件，参数填写见上文<br>
+  7.执行make<br>
   
   
   
