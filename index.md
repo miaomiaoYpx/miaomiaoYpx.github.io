@@ -1,5 +1,5 @@
- 记录windows到linux交叉编译的研究
- ====
+ # 记录windows到linux交叉编译的研究<br>
+ 
  第一次写博客，记录一下研究windows到linux交叉编译的过程，发布在网上比写到自己电脑的word上更有意义
 
  写在前面，这是在windows下完成交叉编译的全过程记录，所以有一些针对windows的独特经验，希望能有所帮助吧
