@@ -38,10 +38,9 @@ make install
  编译过程中，可能会出现错误，大部分情况下是环境中缺失某些工具，因此一开始安装cgywin时选择全部内容的意义就在这里，如果还有缺失，就自己查漏补缺吧，错误信息里会有提示的<br>
 
  接下来将crosstool-ng添加到环境变量中，这样后面才可以使用 ct-ng 下面的一堆命令<br>
- 找到当前用户的.bashrc文件，在windows下可以直接用everything搜索这个文件，然后用notepad++打开直接修改，在最后一行添加
-```PATH=$PATH:/opt/crosstool-ng/bin
-```
- 完事儿测试一下，使用命令 
+ 找到当前用户的.bashrc文件，在windows下可以直接用everything搜索这个文件，然后用notepad++打开直接修改，在最后一行添加:<br>
+```PATH=$PATH:/opt/crosstool-ng/bin```<br>
+ 完事儿测试一下，使用命令:<br>
 ```ct-ng help```
  测试一下是否安装成功了，或者环境变量是不是配置成功了，未成功的话会提示ct-ng command not found类似的话<br>
 
@@ -113,9 +112,9 @@ crosstool-ng内置了一些模板配置，其中很有可能有你需要的，�
  文章对交叉编译的解释，写的很详细了，不再赘述<br>
  
   选择好了配置之后，查看配置的可心参数，使用命令：<br>
- ```ct-ng show-<sample> ```
+ ```ct-ng show-<sample> ```<br>
   选定某个配置，使用命令：<br>
-  ```ct-ng <sample>```
+  ```ct-ng <sample>```<br>
   这个<sample>就是上面选择的“x86_64-unknown-linux-gnu”这一串字符，<br>
  
  接着，进入当前选择的模板的具体配置，可以查看和修改配置，使用命令：
@@ -160,13 +159,13 @@ crosstool-ng内置了一些模板配置，其中很有可能有你需要的，�
 [ERROR]  >>        called from: main[scripts/crosstool-NG.sh@632]
  ```
   其中的这句，<br>
-```[EXTRA]  Saving state to restart at step 'binutils_for_host'...```
+```[EXTRA]  Saving state to restart at step 'binutils_for_host'...```<br>
   'binutils_for_host'就是关键字了，下次恢复编译时，使用命令：
-  ```ct-ng binutils_for_host+```
+  ```ct-ng binutils_for_host+```<br>
   就可以从这一步开始恢复编译，强无敌，可即使这样，仍然很可能要花费很多时间来重复这个编译过程，慢慢来吧<br>
   
   配置好以后，就可以编译了，使用命令：<br>
-  ```ct-ng build```
+  ```ct-ng build```<br>
   开始编译，过程中如果出现：<br>
   Extracting 'linux-custom' 的字样，建议终止编译过程，ctrl+c ，然后手动下载需要的软件包源码，否则让程序自动下载的速度可以说是非常慢了，当然，也不一定都很慢，下载链接的话，可以打开该build.log日志文件，在其中找到下载链接，然后去浏览器打开下载就行，通常会快很多，下载下来放到自动生成的tarballs文件夹下就行了，然后在使用恢复的命令或者build命令来恢复构建过程<br>
   等所有的下载都完成了，就可以放任他自己跑了。<br>
