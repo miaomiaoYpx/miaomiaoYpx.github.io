@@ -18,12 +18,14 @@
 4、使用交叉编译器，对你的目标代码进行编译，生成在对应平台下的可执行程序
  另外补充一句，整个步骤几乎全程都在cygwin环境下进行
 
-#1、安装cgywin
+1、安装cgywin
+----
 直接去官网找下载链接就行了，一般默认装最新版吧；
  安装cygwin时需注意，最好将安装组件中devel目录下内容全部安装了，否则后面使用make等指令时容易出错，缺失东西，见图所示：
 ![image](https://user-images.githubusercontent.com/88359975/127953034-02232859-d71b-4e06-be92-85c14fb5e90c.png)
 
-#2、安装crosstool-ng
+2、安装crosstool-ng
+----
 去http://crosstool-ng.org/download/crosstool-ng/
  去找最新版下载，需要注意，最新版不一定是最下面的那个，因为该页面的排序有问题，作者在文件列表第一行放了一个提示文件告诉你最新版版本号是多少，
 ![crosstooldown](https://user-images.githubusercontent.com/88359975/127964162-70c8917f-cac7-4b96-881f-3825b51881da.png)
@@ -43,8 +45,8 @@ PATH=$PATH:/opt/crosstool-ng/bin
 ct-ng help
  测试一下是否安装成功了，或者环境变量是不是配置成功了，未成功的话会提示ct-ng command not found类似的话
 
-#3.crosstool-ng的使用
-
+3.crosstool-ng的使用
+----
  写在前面，要学会使用ct-ng help 来查看crosstool-ng的功能，会列出来所有功能，真的很详细了
 
 使用之前，最好新建一个文件夹，然后在cygwin中 cd 进去，再做所有的编译工作
@@ -131,7 +133,7 @@ ct-ng list-samples
   从之前出错哪一步之前恢复继续编译
   因为你在编译的过程中，一定会遇到各种出错，一旦报错，就得解决问题之后再继续编译，这里如果不勾的话，想想吧，你每次都得从头编译，绝对会裂开的相信我
   这个勾上之后怎么用呢，首先你找到最新的一条执行通过的步骤，举个例子，
-  =================================================================
+  \=================================================================
 [INFO ]  Installing MPC for host
 [EXTRA]    Configuring MPC
 [EXTRA]    Building MPC
@@ -162,26 +164,29 @@ ct-ng list-samples
   开始编译，过程中如果出现：
   Extracting 'linux-custom' 的字样，建议终止编译过程，ctrl+c ，然后手动下载需要的软件包源码，否则让程序自动下载的速度可以说是非常慢了，当然，也不一定都很慢，下载链接的话，可以打开该build.log日志文件，在其中找到下载链接，然后去浏览器打开下载就行，通常会快很多，下载下来放到自动生成的tarballs文件夹下就行了，然后在使用恢复的命令或者build命令来恢复构建过程
   等所有的下载都完成了，就可以放任他自己跑了。
-  
-  #编译过程出错的处理：
+ 
+ 编译过程出错的处理
+ ----
   参考的文章中列出了很多出错和解决办法，这里只列出我遇到的他文章里没有的出错
- ##1. version mismatch.  This is Automake 1.15.1 
+ ###1. version mismatch.  This is Automake 1.15.1 
   Automake 版本不对， 使用 autoreconf -ivf 命令强制更新makefile中的配置
- ##2.'string' in namespace 'std' does not name a type 
+ ###2.'string' in namespace 'std' does not name a type 
   在对应文件中增加#include <string>的引用，是的你没有看错，我们直接改工具源码，不要怕
- ##3. no usable python found at /usr/bin/python
+ ###3. no usable python found at /usr/bin/python
   打开之前cygwin的安装程序，从中搜索python，在python目录下勾上python对应版本的devel文件，然后安装一下，安装好后从usr/include中找到名为pythonx.x的文件夹，然后放到/usr/bin下面去，如果没有文件夹就创造文件夹
   
   编译成功后：
+ ----
   最终编译完成，会在x-tools文件夹下找到对应的交叉编译器目录，然后要将编译器添加到环境变量中才能使用，把.bashrc的环境变量改为
-#PATH=$PATH:/opt/bin
+\#PATH=$PATH:/opt/bin
 PATH=$PATH:$HOME/.../x-tools/<templename>/bin:/opt/bin
   <templename>就是你生成的交叉编译器目录名，...是你的路径，按实际情况填写
   再去重启cygwin，然后试试命令：
 <templename> -v
   正确打印版本号信息说明配置正确，至此，恭喜你，交叉编译器生成成功了！
   
-  #4.使用交叉编译器编译代码
+  4.使用交叉编译器编译代码
+ ----
   详细步骤可以参考https://www.crifan.com/summary_cross_compile_library_note/
   这个过程，最重要的一步是，在执行
   ./configure ... 
