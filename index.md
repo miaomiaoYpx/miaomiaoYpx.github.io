@@ -165,9 +165,9 @@ ct-ng list-samples
   Extracting 'linux-custom' 的字样，建议终止编译过程，ctrl+c ，然后手动下载需要的软件包源码，否则让程序自动下载的速度可以说是非常慢了，当然，也不一定都很慢，下载链接的话，可以打开该build.log日志文件，在其中找到下载链接，然后去浏览器打开下载就行，通常会快很多，下载下来放到自动生成的tarballs文件夹下就行了，然后在使用恢复的命令或者build命令来恢复构建过程
   等所有的下载都完成了，就可以放任他自己跑了。
  
- ###编译过程出错的处理
+ ### 编译过程出错的处理
   参考的文章中列出了很多出错和解决办法，这里只列出我遇到的他文章里没有的出错
- ###1. version mismatch.  This is Automake 1.15.1 
+ ### 1. version mismatch.  This is Automake 1.15.1 
   Automake 版本不对， 使用 autoreconf -ivf 命令强制更新makefile中的配置
  ###2.'string' in namespace 'std' does not name a type 
   在对应文件中增加#include <string>的引用，是的你没有看错，我们直接改工具源码，不要怕
