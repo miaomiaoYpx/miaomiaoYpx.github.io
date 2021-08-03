@@ -54,7 +54,7 @@ crosstool-ng内置了一些模板配置，其中很有可能有你需要的，�
 ct-ng list-samples
 列出所有内置的模板配置，部分列表长这样：
 
-[G..]   i686-nptl-linux-gnu
+```[G..]   i686-nptl-linux-gnu
 [G..]   i686-ubuntu12.04-linux-gnu
 [G..]   i686-ubuntu14.04-linux-gnu
 [G..]   i686-ubuntu16.04-linux-gnu
@@ -107,7 +107,7 @@ ct-ng list-samples
  G (Global)      : sample was installed with crosstool-NG
  X (EXPERIMENTAL): sample may use EXPERIMENTAL features
  B (BROKEN)      : sample is currently broken
- 
+ ```
  我这里第一次尝试，于是选了x86_64-unknown-linux-gnu这个配置作为基础，然后做一些配置的修改；
  关于这个x86_64-unknown-linux-gnu名称的含义，参考https://www.crifan.com/files/doc/docbook/cross_compile/release/html/cross_compile.html
  文章对交叉编译的解释，写的很详细了，不再赘述
@@ -133,7 +133,7 @@ ct-ng list-samples
   从之前出错哪一步之前恢复继续编译
   因为你在编译的过程中，一定会遇到各种出错，一旦报错，就得解决问题之后再继续编译，这里如果不勾的话，想想吧，你每次都得从头编译，绝对会裂开的相信我
   这个勾上之后怎么用呢，首先你找到最新的一条执行通过的步骤，举个例子，
-  \=================================================================
+  ```\=================================================================
 [INFO ]  Installing MPC for host
 [EXTRA]    Configuring MPC
 [EXTRA]    Building MPC
@@ -153,6 +153,7 @@ ct-ng list-samples
 [ERROR]  >>        called from: do_binutils_backend[scripts/build/binutils/binutils.sh@205]
 [ERROR]  >>        called from: do_binutils_for_host[scripts/build/binutils/binutils.sh@92]
 [ERROR]  >>        called from: main[scripts/crosstool-NG.sh@632]
+ ```
   其中的这句，
 [EXTRA]  Saving state to restart at step 'binutils_for_host'...
   'binutils_for_host'就是关键字了，下次恢复编译时，使用命令：
@@ -188,16 +189,15 @@ PATH=$PATH:$HOME/.../x-tools/<templename>/bin:/opt/bin
   详细步骤可以参考https://www.crifan.com/summary_cross_compile_library_note/
   这个过程，最重要的一步是，在执行
   ./configure ... 
-  命令去配置程序时，将以下参数设置好：
+  命令去配置程序时，将以下参数设置好：<br>
   
-–prefix：指的是，将编译好的库，安装到哪里
-–build=i686-pc-cygwin：指的是，我当前的pc编译环境是cygwin
-–target=arm-xscale-linux和–host=arm-xscale-linux：表示我的编译是交叉编译，即编译出来的代码，是运行在xscale上的。
-–disable-cplusplus：表示是去禁止cpp的编译->不会去编译src/cpp下面的东西->不会出现上面的"XmlRpcCpp.cpp:39: undefined reference to `_xmlrpc_env_init’"错误
-CC=arm-xscale-linux-gnueabi-gcc：指定所用的交叉编译器gcc
+–prefix：指的是，将编译好的库，安装到哪里<br>
+–build=i686-pc-cygwin：指的是，我当前的pc编译环境是cygwin<br>
+–target=arm-xscale-linux和–host=arm-xscale-linux：表示我的编译是交叉编译，即编译出来的代码，是运行在xscale上的。<br>
+–disable-cplusplus：表示是去禁止cpp的编译->不会去编译src/cpp下面的东西->不会出现上面的"XmlRpcCpp.cpp:39: undefined reference to `_xmlrpc_env_init’"错误<br>
+CC=arm-xscale-linux-gnueabi-gcc：指定所用的交叉编译器gcc<br>
   
-  参数的值根据你的具体情况去填
-  配置完成后，调用最后的make命令，会调用你的交叉编译器，来编译生成对应平台的可执行文件，然后把该文件拷贝过去试一试吧
+  参数的值根据你的具体情况去填,配置完成后，调用最后的make命令，会调用你的交叉编译器，来编译生成对应平台的可执行文件，然后把该文件拷贝过去试一试吧
   
   ### 补充：一开始只有.c或.cpp的源码，怎么从无到有生成configure和makefile文件
   1.使用autoscan命令，生成configure.scan<br>
