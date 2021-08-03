@@ -165,8 +165,7 @@ ct-ng list-samples
   Extracting 'linux-custom' 的字样，建议终止编译过程，ctrl+c ，然后手动下载需要的软件包源码，否则让程序自动下载的速度可以说是非常慢了，当然，也不一定都很慢，下载链接的话，可以打开该build.log日志文件，在其中找到下载链接，然后去浏览器打开下载就行，通常会快很多，下载下来放到自动生成的tarballs文件夹下就行了，然后在使用恢复的命令或者build命令来恢复构建过程
   等所有的下载都完成了，就可以放任他自己跑了。
  
- 编译过程出错的处理
- ----
+ ###编译过程出错的处理
   参考的文章中列出了很多出错和解决办法，这里只列出我遇到的他文章里没有的出错
  ###1. version mismatch.  This is Automake 1.15.1 
   Automake 版本不对， 使用 autoreconf -ivf 命令强制更新makefile中的配置
@@ -175,8 +174,7 @@ ct-ng list-samples
  ###3. no usable python found at /usr/bin/python
   打开之前cygwin的安装程序，从中搜索python，在python目录下勾上python对应版本的devel文件，然后安装一下，安装好后从usr/include中找到名为pythonx.x的文件夹，然后放到/usr/bin下面去，如果没有文件夹就创造文件夹
   
-  编译成功后：
- ----
+  ###编译成功后：
   最终编译完成，会在x-tools文件夹下找到对应的交叉编译器目录，然后要将编译器添加到环境变量中才能使用，把.bashrc的环境变量改为
 \#PATH=$PATH:/opt/bin
 PATH=$PATH:$HOME/.../x-tools/<templename>/bin:/opt/bin
