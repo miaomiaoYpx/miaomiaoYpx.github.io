@@ -110,8 +110,8 @@ ct-ng list-samples
  ct-ng show-<sample> 
   选定某个配置，使用命令：
   ct-ng <sample>
-  这个<sample>就是上面选择的“x86_64-unknown-linux-gnu”这一串字符
-  
+  这个<sample>就是上面选择的“x86_64-unknown-linux-gnu”这一串字符，
+ 
   接着，进入当前选择的模板的具体配置，可以查看和修改配置，使用命令：
   ct-ng menuconfig
   会弹出一个配置界面，通过上下来移动，回车来进入选项，空格来打钩或取消打钩
