@@ -204,17 +204,17 @@ CC=arm-xscale-linux-gnueabi-gcc：指定所用的交叉编译器gcc<br>
   
   参数的值根据你的具体情况去填,配置完成后，调用最后的make命令，会调用你的交叉编译器，来编译生成对应平台的可执行文件，然后把该文件拷贝过去试一试吧<br>
   
-  ### 补充：一开始只有.c或.cpp的源码，怎么从无到有生成configure和makefile文件
-  1.使用autoscan命令，生成configure.scan<br>
-  2.将configure.scan该名为configure.ac并修改其内容，可参考https://www.cnblogs.com/fallenmoon/p/7506035.html<br>
-  3.执行aclocal和autoconf命令，生成aclocal.m4和configure文件<br>
-  4.新建Makefile.am文件，填入以下内容：<br>
+  ### 补充：一开始只有.c或.cpp的源码，怎么从无到有生成configure和makefile文件<br>
+  #### 1.使用autoscan命令，生成configure.scan<br>
+  #### 2.将configure.scan该名为configure.ac并修改其内容，可参考https://www.cnblogs.com/fallenmoon/p/7506035.html<br>
+  #### 3.执行aclocal和autoconf命令，生成aclocal.m4和configure文件<br>
+  #### 4.新建Makefile.am文件，填入以下内容：<br>
 AUTOMAKE_OPTIONS=foreign <br>
 bin_PROGRAMS=helloworld <br>
 helloworld_SOURCES=helloworld.c <br>
-  5.执行automake --add-missing生成makefile.in文件<br>
-  6.执行configure ... 配置并生成makefile文件，参数填写见上文<br>
-  7.执行make<br>
+  #### 5.执行automake --add-missing生成makefile.in文件<br>
+  #### 6.执行configure ... 配置并生成makefile文件，参数填写见上文<br>
+  #### 7.执行make<br>
   
   
   
