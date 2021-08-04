@@ -196,10 +196,10 @@ PATH=$PATH:$HOME/.../x-tools/<templename>/bin:/opt/bin
   ```./configure ... ```
   命令去配置程序时，将以下参数设置好：<br>
   
-–prefix：指的是，将编译好的库，安装到哪里<br>
-–build=i686-pc-cygwin：指的是，我当前的pc编译环境是cygwin<br>
-–target=arm-xscale-linux和–host=arm-xscale-linux：表示我的编译是交叉编译，即编译出来的代码，是运行在xscale上的。<br>
-–disable-cplusplus：表示是去禁止cpp的编译->不会去编译src/cpp下面的东西->不会出现上面的"XmlRpcCpp.cpp:39: undefined reference to `_xmlrpc_env_init’"错误<br>
+prefix：指的是，将编译好的库，安装到哪里<br>
+build=i686-pc-cygwin：指的是，我当前的pc编译环境是cygwin<br>
+target=arm-xscale-linux和–host=arm-xscale-linux：表示我的编译是交叉编译，即编译出来的代码，是运行在xscale上的。<br>
+disable-cplusplus：表示是去禁止cpp的编译->不会去编译src/cpp下面的东西->不会出现上面的"XmlRpcCpp.cpp:39: undefined reference to `_xmlrpc_env_init’"错误<br>
 CC=arm-xscale-linux-gnueabi-gcc：指定所用的交叉编译器gcc<br>
   
   参数的值根据你的具体情况去填,配置完成后，调用最后的make命令，会调用你的交叉编译器，来编译生成对应平台的可执行文件，然后把该文件拷贝过去试一试吧<br>
