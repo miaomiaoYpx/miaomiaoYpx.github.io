@@ -236,7 +236,7 @@ helloworld_SOURCES=helloworld.c <br>
    ```bash --login -c "filename"```<br>
    filename就是第二个脚本文件咯<br>
    所以最终就是这样，一个编译源码的脚本，一个调用该脚本的脚本，其中的内容基本长这样：<br>
-```cd $HOME/buildexe
+```\cd $HOME/buildexe
 ./build.sh
 exit
 ```
