@@ -246,3 +246,29 @@ exit用于自动关闭控制台，根据你的需要来调整吧<br>
    ```bash --login -c "test.sh"```<br>
    这样，就基本完成了整个流程的串联<br>
   至此，还遗留了一个问题，configure.ac和Makefile.am中的内容，在脚本中，目前是写死的，没办法根据实际情况去自动调整内容，这个有待后续研究吧
+
+## 记录以下在虚拟机centOS8上安装matlab2021的过程
+   
+   首先将安装包放到虚拟机上，发现直接拖，拖不过去，试了各种方法后，最后还是用了ftp来传递<br>
+   然后将文件中的Matlab910R2021a_Lin64.iso使用mount命令挂载到某个位置；<br>
+   接着尝试直接安装，也就是在终端输入命令```./install```<br>
+   遇到两种报错：<br>
+   1. ```DisplayE​rror' what(): No display available. Aborted (core dumped)```<br>
+   这是由于在root权限下执行命令造成的，使用其他用户来执行就好了<br>
+   2. ``` what():  Unable to launch the MATLABWindow application```<br>
+   查了半天，有个人说<br>
+   ```You are missing  'libselinux.so.1"
+yay -S libselinux
+and retry
+   ```
+   试了一下说yay命令不存在。。。<br>
+   还有一个人说：<br>
+   ```cd /home/YourUserName/Downloads/matlab_R2020a_glnxa64/bin/glnxa64
+rm libcrypto.so.1.1
+sudo su -
+cd /home/YourUserName/Downloads/matlab_R2020a_glnxa64
+export DISPLAY=':0'
+./install
+   ```
+   这个成功了<br>
+   然后就顺利安装啦<br>
