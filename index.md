@@ -243,7 +243,7 @@ exit
 ```
 exit用于自动关闭控制台，根据你的需要来调整吧<br>
 于是windows上的.bat只有一句话：<br>
-   ```bash --login -c "test.sh"```<br>
+   ```bash --login -i -c "test.sh"```<br>
    这样，就基本完成了整个流程的串联<br>
   至此，还遗留了一个问题，configure.ac和Makefile.am中的内容，在脚本中，目前是写死的，没办法根据实际情况去自动调整内容，这个有待后续研究吧
 
